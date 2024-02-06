@@ -5,7 +5,11 @@
 
 canvas{
 	margin: 0 auto;
-	background:url("slike/labirint.svg");
+	background-image:url("slike/labirint.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 600px;
+	height: 600px;
 }
 
 #center{
@@ -16,8 +20,8 @@ canvas{
     background: linear-gradient(130deg, rgba(255,255,255,255) 0%, rgb(77, 197, 212) 100%);
     backdrop-filter: blur(20px);
 	background-repeat:no-repeat;
-	max-width: 482px;
-	max-height: 482px;
+	width: 600px;
+	height: 600px;
 }
 
 p{
@@ -25,7 +29,6 @@ p{
     margin-top: 1.8%;
     text-align: center;
     font-size: 150px;
-    font-family: 'marvel';
 }
 
 #spidermanLeva{

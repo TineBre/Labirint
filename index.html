@@ -18,7 +18,7 @@
 
 
     <div id="center">
-        <canvas id="canvas" width="483" height="483"></canvas>
+        <canvas id="canvas" width="482" height="482"></canvas>
     </div>
 
     <div id="gumbi">
@@ -37,21 +37,9 @@
             document.getElementById("startBtn").disabled = true;
         }
         
-            var img = new Image();
-            var imageIndex = 1; // Za sledenje trenutnemu indeksu slike
-
-            // Funkcija za spremembo vira slike vsakih 200 ms
-            function changeImage() {
-                img.src = 'slike/BoyFront' + imageIndex + '.png';
-
-                // Povečaj indeks slike za kroženje med tremi slikami (1, 2, 3, 1, 2, 3, ...)
-                imageIndex = (imageIndex % 3) + 1;
-            }
-
-            // Nastavi interval za klicanje funkcije changeImage vsakih 200 ms
-            setInterval(changeImage, 200);
+            
         
-        // Define your motion path as an array of {x, y} coordinates
+        //Define your motion path as an array of {x, y} coordinates
         var motionPath = [
             { x: 234, y: 2 },
             { x: 234, y: 10 },
@@ -129,9 +117,10 @@
                 ctx.beginPath();
                 ctx.moveTo(motionPath[0].x, motionPath[0].y);
                 for (var i = 1; i <= object.currentTarget + 1; i++) {
+                    
                     ctx.lineTo(motionPath[i].x, motionPath[i].y);
                 }
-                ctx.strokeStyle = 'white';
+                ctx.strokeStyle = 'blue';
                 ctx.stroke();
 
                 // draw the image
@@ -174,10 +163,23 @@
                 drawObject();
                 requestAnimationFrame(animate);
             }
-
             // Start the animation loop
             animate();
 
+        }
+
+        if(true){
+            var img = new Image();
+            var imageIndex = 1; // Za sledenje trenutnemu indeksu slike
+            // Funkcija za spremembo vira slike vsakih 200 ms
+            function changeImage() {
+                img.src = 'slike/BoyFront' + imageIndex + '.png';
+                // Povečaj indeks slike za kroženje med tremi slikami (1, 2, 3, 1, 2, 3, ...)
+                imageIndex = (imageIndex % 3) + 1;
+            }
+            // Nastavi interval za klicanje funkcije changeImage vsakih 200 ms
+            setInterval(changeImage, 200);
+            
         }
 
         var startButton = document.getElementById('startBtn');
