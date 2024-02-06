@@ -36,8 +36,7 @@
         function disableButton() {
             document.getElementById("startBtn").disabled = true;
         }
-        
-            
+
         
         //Define your motion path as an array of {x, y} coordinates
         var motionPath = [
@@ -174,6 +173,19 @@
             // Funkcija za spremembo vira slike vsakih 200 ms
             function changeImage() {
                 img.src = 'slike/BoyFront' + imageIndex + '.png';
+                // Povečaj indeks slike za kroženje med tremi slikami (1, 2, 3, 1, 2, 3, ...)
+                imageIndex = (imageIndex % 3) + 1;
+            }
+            // Nastavi interval za klicanje funkcije changeImage vsakih 200 ms
+            setInterval(changeImage, 200);
+            
+        }
+        if(true){
+            var img = new Image();
+            var imageIndex = 1; // Za sledenje trenutnemu indeksu slike
+            // Funkcija za spremembo vira slike vsakih 200 ms
+            function changeImage() {
+                img.src = 'slike/BoyLeft' + imageIndex + '.png';
                 // Povečaj indeks slike za kroženje med tremi slikami (1, 2, 3, 1, 2, 3, ...)
                 imageIndex = (imageIndex % 3) + 1;
             }
