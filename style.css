@@ -3,11 +3,6 @@
 	padding:0;	
 }
 
-@font-face{
-	font-family: 'marvel';
-	src: url("marvel.otf");
-}
-
 canvas{
 	margin: 0 auto;
 	background:url("slike/labirint.svg");
@@ -18,7 +13,7 @@ canvas{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(130deg, rgba(255,255,255,255) 0%, rgb(255, 255, 255) 100%);
+    background: linear-gradient(130deg, rgba(255,255,255,255) 0%, rgb(77, 197, 212) 100%);
     backdrop-filter: blur(20px);
 	background-repeat:no-repeat;
 	max-width: 482px;
@@ -48,7 +43,7 @@ p{
 }
 
 body{
-	background: linear-gradient(130deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 80%);
+	background: linear-gradient(130deg, rgb(255, 255, 255) 0%, rgb(111, 218, 226) 80%);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -58,7 +53,6 @@ body{
 }
 
 .button{
-    font-family: "marvel";
     position: fixed;
     color: aliceblue;
     background-color: black;
@@ -73,7 +67,6 @@ body{
 }
 
 .button2{
-    font-family: "marvel";
     color: aliceblue;
     background-color: black;
     position: fixed;
@@ -98,7 +91,6 @@ body{
     text-align: center;
     text-transform: none;
     word-wrap: break-word;
-    font-family: "marvel";
 }
 
 .swal2-html-container {
@@ -114,5 +106,4 @@ body{
     text-align: center;
     word-wrap: break-word;
     word-break: break-word;
-    font-family: "marvel";
 }

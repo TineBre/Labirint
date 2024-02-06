@@ -2,7 +2,7 @@
 
 <head>
     <title>Pixel-Boy</title>
-    <link rel="icon" type="image/x-icon" href="slike/marvel.jpg">
+    <link rel="icon" type="image/x-icon" href="slike/BoyFront1.png">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
@@ -36,7 +36,21 @@
         function disableButton() {
             document.getElementById("startBtn").disabled = true;
         }
+        
+            var img = new Image();
+            var imageIndex = 1; // Za sledenje trenutnemu indeksu slike
 
+            // Funkcija za spremembo vira slike vsakih 200 ms
+            function changeImage() {
+                img.src = 'slike/BoyFront' + imageIndex + '.png';
+
+                // Povečaj indeks slike za kroženje med tremi slikami (1, 2, 3, 1, 2, 3, ...)
+                imageIndex = (imageIndex % 3) + 1;
+            }
+
+            // Nastavi interval za klicanje funkcije changeImage vsakih 200 ms
+            setInterval(changeImage, 200);
+        
         // Define your motion path as an array of {x, y} coordinates
         var motionPath = [
             { x: 234, y: 2 },
@@ -92,16 +106,7 @@
             { x: 234, y: 500 }
         ];
 
-        //sweet alert
-        window.onload = function () {
-            Swal.fire({
-                title: 'WELCOME TO Pixel-Boy MAZE!',
-                html: 'Click "START" and watch Pixel-Boy go through the maze!',
-                imageUrl: 'slike/BoyFront1.png',
-                imageHeight: 280,
-                imageAlt: 'spiderman',
-            })
-        };
+
 
         //button trigers startAnimation
         function startAnimation() {
@@ -130,30 +135,9 @@
                 ctx.stroke();
 
                 // draw the image
-                var img = new Image();
-                img.src = 'slike/BoyFront1.png';
 
                 ctx.drawImage(img, object.x - 8, object.y - 8, 15, 15);
 
-                //table of img for animation
-                var images = new Array()
-                images = [
-                    "slike/BoyFront1.png",
-                    "slike/BoyFront2.png",
-                    "slike/BoyFront3.png"
-                ];
-
-                //movment animation down
-                setInterval("Animate()", 200);
-                var x = 0;
-
-                function Animate() {
-                    img.src = 'slike/BoyFront3.png';
-                    x++;
-                    if (images.length == x) {
-                        x = 0;
-                    }
-                }
 
                 // remove the current position of the object from the motion path
                 motionPath.splice(object.currentTarget, 1);
@@ -178,29 +162,8 @@
                 // Stop the animation if the object has reached a certain point
                 if (object.x >= 234 && object.y >= 500) {
 
-                    let timerInterval
                     //Sweet alert for the end
-                    Swal.fire({
-                        title: 'The Pixel-Boy has beaten the maze!',
-                        html: 'The maze will automatically relode in <b></b> milliseconds.',
-                        timer: 5000,
-                        timerProgressBar: true,
-                        didOpen: () => {
-                            Swal.showLoading()
-                            const b = Swal.getHtmlContainer().querySelector('b')
-                            timerInterval = setInterval(() => {
-                                b.textContent = Swal.getTimerLeft()
-                            }, 100)
-                        },
-                        willClose: () => {
-                            clearInterval(timerInterval)
-                        }
-                    }).then((result) => {
-                        if (result.dismiss === Swal.DismissReason.timer) {
-                            console.log('I was closed by the timer')
-                            location.reload();
-                        }
-                    })
+
                     cancelAnimationFrame(animationID);
                 }
             }
