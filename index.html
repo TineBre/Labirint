@@ -11,12 +11,6 @@
 
 <body>
     <p>PIXEL-BOY</p>
-    <!--<img id="spidermanLeva" src="slike/spiderman1.png" alt="SpidermanLeva">
-    <div class="spidermanDesno">
-        <img id="spidermanDesno" src="slike/spiderman1Zrcalna.png" alt="SpidermanDesna">
-    </div>-->
-
-
     <div id="center">
         <canvas id="canvas" width="482" height="482"></canvas>
     </div>
@@ -37,8 +31,6 @@
             document.getElementById("startBtn").disabled = true;
         }
 
-        
-        //Define your motion path as an array of {x, y} coordinates
         var motionPath = [
             { x: 234, y: 2 },
             { x: 234, y: 10 },
@@ -92,20 +84,14 @@
             { x: 250, y: 500 },
             { x: 234, y: 500 }
         ];
-
-
-
-        //button trigers startAnimation
-        function startAnimation() {
-            // Define your object
-            var object = {
-                x: motionPath[0].x, // start at the beginning of the path
+        var object = {
+                x: motionPath[0].x, 
                 y: motionPath[0].y,
-                speed: 1, // pixels per frame
-                currentTarget: 1 // start moving towards the second point on the path
-            };
-
-            // Define a function to draw your object and the line
+                speed: 1, 
+                currentTarget: 1,
+                direction: "right"
+        };
+        function startAnimation() {
             function drawObject() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height); // clear the canvas
 
@@ -117,7 +103,7 @@
                 ctx.moveTo(motionPath[0].x, motionPath[0].y);
                 for (var i = 1; i <= object.currentTarget + 1; i++) {
                     
-                    ctx.lineTo(motionPath[i].x, motionPath[i].y);
+                    ctx.lineTo(motionPath[i-1].x, motionPath[i-1].y);
                 }
                 ctx.strokeStyle = 'blue';
                 ctx.stroke();
@@ -167,7 +153,7 @@
 
         }
 
-        if(true){
+        if(window.object.direction === "front"){
             var img = new Image();
             var imageIndex = 1; // Za sledenje trenutnemu indeksu slike
             // Funkcija za spremembo vira slike vsakih 200 ms
@@ -180,12 +166,38 @@
             setInterval(changeImage, 200);
             
         }
-        if(true){
+        if(window.object.direction === "left"){
             var img = new Image();
             var imageIndex = 1; // Za sledenje trenutnemu indeksu slike
             // Funkcija za spremembo vira slike vsakih 200 ms
             function changeImage() {
                 img.src = 'slike/BoyLeft' + imageIndex + '.png';
+                // Povečaj indeks slike za kroženje med tremi slikami (1, 2, 3, 1, 2, 3, ...)
+                imageIndex = (imageIndex % 3) + 1;
+            }
+            // Nastavi interval za klicanje funkcije changeImage vsakih 200 ms
+            setInterval(changeImage, 200);
+            
+        }
+        if(window.object.direction === "back"){
+            var img = new Image();
+            var imageIndex = 1; // Za sledenje trenutnemu indeksu slike
+            // Funkcija za spremembo vira slike vsakih 200 ms
+            function changeImage() {
+                img.src = 'slike/BoyBack' + imageIndex + '.png';
+                // Povečaj indeks slike za kroženje med tremi slikami (1, 2, 3, 1, 2, 3, ...)
+                imageIndex = (imageIndex % 3) + 1;
+            }
+            // Nastavi interval za klicanje funkcije changeImage vsakih 200 ms
+            setInterval(changeImage, 200);
+            
+        }
+        if(window.object.direction === "right"){
+            var img = new Image();
+            var imageIndex = 1; // Za sledenje trenutnemu indeksu slike
+            // Funkcija za spremembo vira slike vsakih 200 ms
+            function changeImage() {
+                img.src = 'slike/BoyRight' + imageIndex + '.png';
                 // Povečaj indeks slike za kroženje med tremi slikami (1, 2, 3, 1, 2, 3, ...)
                 imageIndex = (imageIndex % 3) + 1;
             }
