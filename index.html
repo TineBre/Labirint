@@ -6,20 +6,31 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-
+<audio id="myAudio" src="JohnnyBravoIntro.mp3"></audio>
 <body>
-    <p>PIXEL-BOY</p>
+    <p>JOHNY BRAVO</p>
+
+    <img id="johnyLeva" src="slike/JohnyBravo3.png" alt="johnyLeva" height="450">
+
+    <div class="johnyDesno">
+        <img id="johnyDesno" src="slike/JohnnyBravo2.png" alt="johnyDesna" height="450">
+    </div>
+
     <div id="center">
-        <canvas id="canvas" width="482" height="482"></canvas>
+        <canvas id="canvas" width="483" height="483"></canvas>
     </div>
 
     <div id="gumbi">
-        <button class="button" id="startBtn" onclick="disableButton();">START</button>
+        <button class="button" id="startBtn" onclick="disableButton(); playAudio();">START</button>
         <button class="button2" onclick="location.reload();">RELOAD</button>
     </div>
 
     <script>
-
+        //starts playing sound
+        function playAudio(){
+            var x= document.getElementById("myAudio");
+            x.play();
+        }
         // Set up canvas and context
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
@@ -30,14 +41,14 @@
         }
 
         var motionPath = [
-            { x: 234, y: 2, d:"right"},
-            { x: 234, y: 10, d:"right"},
-            { x: 250, y: 10, d:"down"},
-            { x: 250, y: 26, d:"right"},
-            { x: 282, y: 26, d:"down"},
-            { x: 282, y: 42, d:"right"},
-            { x: 298, y: 42, d:"down"},
-            { x: 298, y: 58, d:"left" },
+            { x: 234, y: 2 },
+            { x: 234, y: 10 },
+            { x: 250, y: 10 },
+            { x: 250, y: 26 },
+            { x: 282, y: 26 },
+            { x: 282, y: 42 },
+            { x: 298, y: 42 },
+            { x: 298, y: 58 },
             { x: 282, y: 58 },
             { x: 282, y: 74 },
             { x: 314, y: 74 },
@@ -82,6 +93,17 @@
             { x: 250, y: 500 },
             { x: 234, y: 500 }
         ];
+        window.onload = function () {
+            Swal.fire({
+                title: 'WELCOME TO JOHNY BRAVO MAZE!',
+                html: 'Click "START" and see Johny find his pants!',
+                imageUrl: 'slike/JohnyBravo4.png',
+                imageWidth: 400,
+                imageHeight: 280,
+                imageAlt: 'spiderman',
+            })
+        };
+
         var object = {
             x: motionPath[0].x,
             y: motionPath[0].y,
@@ -90,7 +112,7 @@
             direction: "back"
         };
         function startAnimation() {
-            
+
             function drawObject() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height); // clear the canvas
 
@@ -101,10 +123,10 @@
                 ctx.beginPath();
                 ctx.moveTo(motionPath[0].x, motionPath[0].y);
                 for (var i = 1; i <= object.currentTarget + 1; i++) {
-                    
+
                     ctx.lineTo(motionPath[i - 1].x, motionPath[i - 1].y);
                 }
-                
+
                 ctx.strokeStyle = 'blue';
                 ctx.stroke();
 
@@ -124,14 +146,14 @@
                 var dx = target.x - object.x; // calculate the distance between the current position and the target
                 var dy = target.y - object.y;
                 var distance = Math.sqrt(dx * dx + dy * dy); //calculate the total distance bettwen pots (pitagotov izrek)
-                if (dx >= 0 && dy==0) {
+                if (dx >= 0 && dy == 0) {
                     object.direction = "right";
-                } else if(dx <= 0 && dy==0){
+                } else if (dx <= 0 && dy == 0) {
                     object.direction = "left";
-                }else if(dy >= 0 && dx==0){
+                } else if (dy >= 0 && dx == 0) {
                     object.direction = "front";
                 }
-                else{
+                else {
                     object.direction = "back";
                 }
                 if (distance < object.speed) { // if the object has reached the target, move on to the next one, If the distance is less than the speed
@@ -146,7 +168,29 @@
                 if (object.x >= 234 && object.y >= 500) {
 
                     //Sweet alert for the end
-
+                    let timerInterval
+                    //Sweet alert for the end
+                    Swal.fire({
+                        title: 'Johny Bravo hase found his pants',
+                        html: 'The maze will automatically relode in <b></b> milliseconds.',
+                        timer: 4000,
+                        timerProgressBar: true,
+                        imageUrl: 'slike/JohnnyBravo1.webp',
+                        didOpen: () => {
+                            Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                b.textContent = Swal.getTimerLeft()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            location.reload();
+                        }
+                    })
                     cancelAnimationFrame(animationID);
                 }
             }
