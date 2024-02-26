@@ -172,15 +172,15 @@
                     //Sweet alert for the end
                     Swal.fire({
                         title: 'Johny Bravo hase found his pants',
-                        html: 'The maze will automatically relode in <b></b> milliseconds.',
-                        timer: 4000,
+                        html: 'The maze will automatically relode in <b></b> seconds.',
+                        timer: 5000,
                         timerProgressBar: true,
                         imageUrl: 'slike/JohnnyBravo1.webp',
                         didOpen: () => {
                             Swal.showLoading()
                             const b = Swal.getHtmlContainer().querySelector('b')
                             timerInterval = setInterval(() => {
-                                b.textContent = Swal.getTimerLeft()
+                                b.textContent = Math.ceil(Swal.getTimerLeft()/1000)
                             }, 100)
                         },
                         willClose: () => {
