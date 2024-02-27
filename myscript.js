@@ -76,7 +76,6 @@
                 imageAlt: 'spiderman',
             })
         };
-
         var object = {
             x: motionPath[0].x,
             y: motionPath[0].y,
@@ -96,8 +95,7 @@
                 for (var i = 1; i <= object.currentTarget + 1; i++) {
 
                     ctx.lineTo(motionPath[i - 1].x, motionPath[i - 1].y);
-                }
-
+                }                     
                 ctx.strokeStyle = 'blue';
                 ctx.stroke();
 
@@ -135,7 +133,7 @@
 
                     let timerInterval
                     Swal.fire({
-                        title: 'Johny Bravo hase found his pants',
+                        title: 'Johny found his pants',
                         html: 'The maze will automatically relode in <b></b> seconds.',
                         timer: 5000,
                         timerProgressBar: true,
