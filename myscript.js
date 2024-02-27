@@ -87,12 +87,10 @@
         function startAnimation() {
 
             function drawObject() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height); // clear the canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                // add the current position of the object to the motion path
                 motionPath.splice(object.currentTarget, 0, { x: object.x, y: object.y });
 
-                // draw the line up to the current position of the object
                 ctx.beginPath();
                 ctx.moveTo(motionPath[0].x, motionPath[0].y);
                 for (var i = 1; i <= object.currentTarget + 1; i++) {
@@ -103,22 +101,17 @@
                 ctx.strokeStyle = 'blue';
                 ctx.stroke();
 
-                // draw the image
-
                 ctx.drawImage(img, object.x - 8, object.y - 8, 15, 15);
 
-
-                // remove the current position of the object from the motion path
                 motionPath.splice(object.currentTarget, 1);
             }
 
 
-            // Define a function to update the position of your object
             function updatePosition() {
-                var target = motionPath[object.currentTarget]; // get the next point on the path
-                var dx = target.x - object.x; // calculate the distance between the current position and the target
+                var target = motionPath[object.currentTarget]; 
+                var dx = target.x - object.x;
                 var dy = target.y - object.y;
-                var distance = Math.sqrt(dx * dx + dy * dy); //calculate the total distance bettwen pots (pitagotov izrek)
+                var distance = Math.sqrt(dx * dx + dy * dy);
                 if (dx >= 0 && dy == 0) {
                     object.direction = "right";
                 } else if (dx <= 0 && dy == 0) {
@@ -129,20 +122,18 @@
                 else {
                     object.direction = "back";
                 }
-                if (distance < object.speed) { // if the object has reached the target, move on to the next one, If the distance is less than the speed
-                    object.x = target.x; // match the object with exact positions x
-                    object.y = target.y; // match the object with exact positions y
-                    object.currentTarget = (object.currentTarget + 1) % motionPath.length; // updates the current target of the object to the next point on the motion path
-                } else { // otherwise, move towards the target
+                if (distance < object.speed) {
+                    object.x = target.x; 
+                    object.y = target.y; 
+                    object.currentTarget = (object.currentTarget + 1) % motionPath.length;
+                } else { 
                     object.x += dx / distance * object.speed;
                     object.y += dy / distance * object.speed;
                 }
                 // Stop the animation if the object has reached a certain point
                 if (object.x >= 234 && object.y >= 500) {
 
-                    //Sweet alert for the end
                     let timerInterval
-                    //Sweet alert for the end
                     Swal.fire({
                         title: 'Johny Bravo hase found his pants',
                         html: 'The maze will automatically relode in <b></b> seconds.',
@@ -182,7 +173,6 @@
         var img = new Image();
         var imageIndex = 1;
         function changeImage() {
-            // Dynamically update the image source based on the direction
             switch (object.direction) {
                 case "front":
                     img.src = 'slike/BoyFront' + imageIndex + '.png';
@@ -199,7 +189,7 @@
             }
             window.imageIndex = (imageIndex % 3) + 1;
         }
-        setInterval(changeImage, 150);
+        setInterval(changeImage, 180);
 
         var startButton = document.getElementById('startBtn');
         startButton.addEventListener('click', startAnimation);

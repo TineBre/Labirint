@@ -17,7 +17,7 @@ canvas{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(130deg, rgba(255,255,255,255) 0%, rgb(77, 197, 212) 100%);
+    background: linear-gradient(130deg, rgb(99, 153, 179)0%, rgb(77, 197, 212) 100%);
     backdrop-filter: blur(20px);
 	background-repeat:no-repeat;
 	width: 600px;
@@ -33,20 +33,23 @@ p{
 
 #johnyLeva{
     position: fixed;
-    margin-top: 35px;
+    margin-top: 60px;
     left: 340;
 }
 
 .johnyDesno {
     position: fixed;
-    right: 313;
-    margin-top: 35px;
+    right: 310;
+    margin-top: 60px;
+}
+
+.preload{
+    visibility: hidden;
 }
 
 
-
 body{
-	background: linear-gradient(130deg, rgb(255, 255, 255) 0%, rgb(111, 218, 226) 80%);
+	background: linear-gradient(130deg, rgb(77, 129, 158) 0%, rgb(93, 208, 216)80%);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
