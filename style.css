@@ -17,9 +17,7 @@ canvas{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(130deg, rgb(99, 153, 179)0%, rgb(77, 197, 212) 100%);
-    backdrop-filter: blur(20px);
-	background-repeat:no-repeat;
+    background-image: url("slike/floor.png");
 	width: 600px;
 	height: 600px;
 }
@@ -49,11 +47,7 @@ p{
 
 
 body{
-	background: linear-gradient(130deg, rgb(77, 129, 158) 0%, rgb(93, 208, 216)80%);
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+	background-image: url("slike/spacebg.png");
 	background-repeat:no-repeat;
 	background-size:cover;
 }

@@ -173,21 +173,21 @@
         function changeImage() {
             switch (object.direction) {
                 case "front":
-                    img.src = 'slike/BoyFront' + imageIndex + '.png';
+                    img.src = 'slike/front' + imageIndex + '.png';
                     break;
                 case "left":
-                    img.src = 'slike/BoyLeft' + imageIndex + '.png';
+                    img.src = 'slike/left' + imageIndex + '.png';
                     break;
                 case "back":
-                    img.src = 'slike/BoyBack' + imageIndex + '.png';
+                    img.src = 'slike/back' + imageIndex + '.png';
                     break;
                 case "right":
-                    img.src = 'slike/BoyRight' + imageIndex + '.png';
+                    img.src = 'slike/right' + imageIndex + '.png';
                     break;
             }
             window.imageIndex = (imageIndex % 3) + 1;
         }
-        setInterval(changeImage, 180);
+        setInterval(changeImage, 120);
 
         var startButton = document.getElementById('startBtn');
         startButton.addEventListener('click', startAnimation);
