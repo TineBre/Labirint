@@ -68,12 +68,11 @@
         ];
         window.onload = function () {
             Swal.fire({
-                title: 'WELCOME TO JOHNY BRAVO MAZE!',
-                html: 'Click "START" and see Johny find his pants!',
-                imageUrl: 'slike/JohnyBravo4.png',
+                title: 'WELCOME TO THE SPACE MAZE!',
+                html: 'Click "START" and get to the air lock!',
+                imageUrl: 'slike/airlock.gif',
                 imageWidth: 400,
                 imageHeight: 280,
-                imageAlt: 'spiderman',
             })
         };
         var object = {
@@ -133,11 +132,11 @@
 
                     let timerInterval
                     Swal.fire({
-                        title: 'Johny found his pants',
+                        title: 'He made it',
                         html: 'The maze will automatically relode in <b></b> seconds.',
                         timer: 5000,
                         timerProgressBar: true,
-                        imageUrl: 'slike/JohnnyBravo1.webp',
+                        imageUrl: 'slike/image.jpg',
                         didOpen: () => {
                             Swal.showLoading()
                             const b = Swal.getHtmlContainer().querySelector('b')
