@@ -96,7 +96,7 @@
 
                     ctx.lineTo(motionPath[i - 1].x, motionPath[i - 1].y);
                 }                     
-                ctx.strokeStyle = 'blue';
+                ctx.strokeStyle = 'white';
                 ctx.stroke();
 
                 ctx.drawImage(img, object.x - 8, object.y - 8, 15, 15);
